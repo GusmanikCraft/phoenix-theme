@@ -1,43 +1,19 @@
-# 🔥 Phoenix Theme by GusmanikCraft
+# 🔥 Phoenix Theme
 
-A premium and modern theme for Pterodactyl Panel, bringing a fresh new look to your game hosting environment.
+A beautiful and modern theme for Pterodactyl Panel that brings a fresh new look to your game hosting environment.
 
 ![Phoenix Theme Banner](https://raw.githubusercontent.com/GusmanikCraft/phoenix-theme/main/preview.png)
 
 ## ✨ Features
 
-- 🎨 Premium Modern UI Design
-- 🌙 Smart Dark Mode
-- 📱 Fully Responsive Layout
-- ⚡ Resource Monitoring
-- 🔐 Menu Access Control
-- 🛡️ Auto Expiry System
-- ⚙️ Admin Control Panel
-- 🌐 Full English Interface
-- 🚀 One-Click Installation
-- 🔒 Secure Implementation
+- 🎨 Modern UI Design
+- 🌙 Dark Mode Support
+- 📱 Responsive Layout
+- ⚡ Performance Optimized
+- ⚙️ Easy Configuration
+- 🌐 English Interface
 
-## 🚀 Quick Install
-
-```bash
-# Download installer
-curl -Lo install.sh https://raw.githubusercontent.com/GusmanikCraft/phoenix-theme/main/install.sh
-
-# Make it executable
-chmod +x install.sh
-
-# Run installer
-sudo ./install.sh
-```
-
-## 📋 Requirements
-
-- Pterodactyl Panel
-- PHP 8.0+
-- curl
-- unzip
-
-## 🛠️ Manual Installation
+## 🚀 Installation
 
 1. Go to your panel directory:
 ```bash
@@ -58,14 +34,12 @@ chown -R www-data:www-data resources/views/themes/phoenix
 4. Edit `.env` file and add:
 ```env
 APP_THEME=phoenix
-APP_THEME_AUTHOR=GusmanikCraft
 ```
 
 5. Clear cache:
 ```bash
 php artisan view:clear
 php artisan cache:clear
-php artisan config:clear
 ```
 
 6. Restart your webserver
@@ -76,23 +50,20 @@ php artisan config:clear
 
 ## ⚙️ Configuration
 
-The theme automatically integrates with your Pterodactyl installation. Additional configuration options available in the admin panel!
+The theme automatically integrates with your Pterodactyl installation. No additional configuration needed!
 
-## 🤝 Support & Community
+## 🤝 Support
 
 - [Report Issues](https://github.com/GusmanikCraft/phoenix-theme/issues)
-- [Discord Server](https://discord.gg/gusmanikcraft)
-- [Documentation](https://github.com/GusmanikCraft/phoenix-theme/wiki)
+- [Discord Community](https://discord.gg/gusmanikcraft)
 
-## 📜 License & Copyright
+## 📜 License
 
-© 2024 GusmanikCraft. All Rights Reserved.
-
-This theme is protected by copyright law. Unauthorized copying, modification, distribution, or use is strictly prohibited. The theme is licensed exclusively for use on a single Pterodactyl Panel installation per purchase.
+© 2024 GusmanikCraft
 
 ## 🙏 Credits
 
-Developed with ❤️ by [GusmanikCraft](https://github.com/GusmanikCraft)
+Created with ❤️ by [GusmanikCraft](https://github.com/GusmanikCraft)
 
 # Pterodactyl Indonesian Theme
 
