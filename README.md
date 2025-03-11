@@ -39,17 +39,36 @@ sudo ./install.sh
 
 ## 🛠️ Manual Installation
 
-1. Download the latest release
-2. Upload files to `/var/www/pterodactyl/resources/views/themes/phoenix`
-3. Set permissions: `chmod -R 755 /var/www/pterodactyl/resources/views/themes/phoenix`
-4. Update ownership: `chown -R www-data:www-data /var/www/pterodactyl/resources/views/themes/phoenix`
-5. Edit `.env` file and set `APP_THEME=phoenix`
-6. Clear cache:
-   ```bash
-   php artisan view:clear
-   php artisan cache:clear
-   ```
-7. Restart your webserver
+1. Go to your panel directory:
+```bash
+cd /workspaces/paenl/pterodactyl/panel
+```
+
+2. Clone the theme:
+```bash
+git clone https://github.com/GusmanikCraft/phoenix-theme.git resources/views/themes/phoenix
+```
+
+3. Set permissions:
+```bash
+chmod -R 755 resources/views/themes/phoenix
+chown -R www-data:www-data resources/views/themes/phoenix
+```
+
+4. Edit `.env` file and add:
+```env
+APP_THEME=phoenix
+APP_THEME_AUTHOR=GusmanikCraft
+```
+
+5. Clear cache:
+```bash
+php artisan view:clear
+php artisan cache:clear
+php artisan config:clear
+```
+
+6. Restart your webserver
 
 ## 🖼️ Screenshots
 
