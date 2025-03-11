@@ -28,8 +28,8 @@ check_command() {
 
 # Check required commands
 echo -e "\n${YELLOW}Checking requirements...${NC}"
-check_command "git"
-check_command "yarn"
+check_command "curl"
+check_command "unzip"
 check_command "php"
 
 # Check Pterodactyl installation
@@ -47,26 +47,29 @@ if [ -d "$PTERO_PATH/resources/views/themes" ]; then
     echo -e "${GREEN}Backup created: pterodactyl_themes_backup_$BACKUP_DATE.tar.gz${NC}"
 fi
 
-# Create theme directories
-echo -e "\n${YELLOW}Creating theme directories...${NC}"
-mkdir -p $PTERO_PATH/resources/views/themes/phoenix/{components,admin,js,css}
+# Create temporary directory
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
 
 # Download theme files
 echo -e "\n${YELLOW}Downloading theme files...${NC}"
-git clone https://github.com/GusmanikCraft/phoenix-theme.git /tmp/phoenix-theme
-cp -r /tmp/phoenix-theme/* $PTERO_PATH/resources/views/themes/phoenix/
-rm -rf /tmp/phoenix-theme
+curl -L -o phoenix-theme.zip https://github.com/GusmanikCraft/phoenix-theme/archive/refs/heads/main.zip
+unzip phoenix-theme.zip
+rm phoenix-theme.zip
+
+# Create theme directories
+echo -e "\n${YELLOW}Installing theme...${NC}"
+mkdir -p $PTERO_PATH/resources/views/themes/phoenix
+cp -r phoenix-theme-main/* $PTERO_PATH/resources/views/themes/phoenix/
+
+# Cleanup
+cd - > /dev/null
+rm -rf $TEMP_DIR
 
 # Set permissions
 echo -e "\n${YELLOW}Setting permissions...${NC}"
 chown -R www-data:www-data $PTERO_PATH/resources/views/themes/phoenix
 chmod -R 755 $PTERO_PATH/resources/views/themes/phoenix
-
-# Install dependencies
-echo -e "\n${YELLOW}Installing dependencies...${NC}"
-cd $PTERO_PATH
-yarn install
-yarn build
 
 # Update .env file
 echo -e "\n${YELLOW}Updating configuration...${NC}"
@@ -79,20 +82,10 @@ fi
 
 # Clear cache
 echo -e "\n${YELLOW}Clearing cache...${NC}"
+cd $PTERO_PATH
 php artisan view:clear
 php artisan cache:clear
 php artisan config:clear
-
-# Create protection file
-echo -e "\n${YELLOW}Setting up theme protection...${NC}"
-cat > $PTERO_PATH/resources/views/themes/phoenix/.protection << EOL
-THEME_NAME=Phoenix
-THEME_AUTHOR=GusmanikCraft
-THEME_VERSION=1.0.0
-INSTALLATION_DATE=$(date)
-SERVER_IP=$(hostname -I | awk '{print $1}')
-LICENSE_KEY=$(openssl rand -hex 16)
-EOL
 
 echo -e "\n${GREEN}╔════════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║       Installation Completed! 🎉        ║${NC}"
